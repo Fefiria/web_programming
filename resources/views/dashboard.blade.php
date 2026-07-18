@@ -11,6 +11,17 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="/cloudinary-test" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="file" name="photo">
+
+                        <button type="submit">
+                            Upload
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
