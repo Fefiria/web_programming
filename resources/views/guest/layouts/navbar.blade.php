@@ -143,43 +143,24 @@
         </li>
         <!--end::Fullscreen Toggle-->
 
-        <!--begin::User Menu Dropdown-->
-        <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img src="{{ asset('adminlte/assets/img/user2-160x160.jpg') }}"
-                    class="user-image rounded-circle shadow" alt="User Image" />
-                <span class="d-none d-md-inline">Alex</span>
+        <!--begin::Guest Register for Membership Button Menu Dropdown-->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="dropdown" href="#">
+                <i class="bi bi-person-circle"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
-                    <img src="{{ asset('adminlte/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
-                        alt="User Image" />
-                    <p>
-                        Alex - Web Developer
-                        <small>Member since Nov. 2023</small>
-                    </p>
-                </li>
-                <!--end::User Image-->
-                <!--begin::Menu Body-->
-                <li class="user-body">
-                    <!--begin::Row-->
-                    <form method="POST" action="#" class="float-end">
-                        @csrf
-
-                        <a href="#" class="btn btn-primary btn-flat"
-                            onclick="event.preventDefault(); this.closest('form').submit();">
-                            Log Out
-                        </a>
-                    </form>
-                    <!--end::Row-->
-                </li>
-                <!--end::Menu Body-->
-                <!--begin::Menu Footer-->
-                <!--end::Menu Footer-->
-            </ul>
+            <div class="dropdown-menu dropdown-menu-end">
+                <a href="{{ route('login') }}" class="dropdown-item">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                </a>
+                <a href="{{ route('register') }}" class="dropdown-item">
+                    <i class="bi bi-person-plus me-2"></i> Register to Become a Member
+                </a>
+            </div>
         </li>
-        <!--end::User Menu Dropdown-->
+    </ul>
+
+    </li>
+    <!--end::Guest Register for Membership Button Dropdown-->
     </ul>
     <!--end::End Navbar Links-->
 </div>

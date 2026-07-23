@@ -1,6 +1,7 @@
 @extends('guest.layouts.main')
 
-@section('content')
+@section('card-title', 'Tentang Kami')
+@section('card-content')
     <section class="bg-white rounded-2xl shadow-sm border p-8">
         <div class="max-w-3xl">
             <h1 class="text-3xl font-bold text-slate-900">Tentang UKM Programming</h1>

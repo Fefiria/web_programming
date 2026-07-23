@@ -1,6 +1,8 @@
 @extends('guest.layouts.main')
 
-@section('content')
+@section('card-title', 'Home')
+
+@section('card-content')
     <div class="space-y-6">
         <section class="bg-white rounded-2xl shadow-sm border p-8">
             <div class="grid lg:grid-cols-2 gap-8 items-center">
@@ -39,5 +41,11 @@
                 </div>
             </div>
         </section>
+    </div>
+@endsection
+
+@section('card-footer')
+    <div class="text-center text-slate-500 text-sm">
+        &copy; 2024 UKM Programming. All rights reserved.
     </div>
 @endsection

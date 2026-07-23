@@ -14,8 +14,12 @@ use App\Http\Controllers\StatusPresensiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'guest.layouts.main')->name('home');
-
+Route::view('/', 'guest.home')->name('home');
+Route::view('/about', 'guest.about')->name('about');
+Route::view('/contact', 'guest.contact')->name('contact');
+Route::get('/division', [DivisionController::class, 'guestIndex'])->name('division');
+Route::view('/department', 'guest.department')->name('department');
+Route::view('/gallery', 'guest.gallery')->name('gallery');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

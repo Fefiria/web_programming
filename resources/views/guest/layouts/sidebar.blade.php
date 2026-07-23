@@ -1,7 +1,7 @@
 <!--begin::Sidebar Brand-->
 <div class="sidebar-brand">
     <!--begin::Brand Link-->
-    <a href="../index.html" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <!--begin::Brand Image-->
         <img src="{{ url('assets/procom.png') }}" alt="Logo-Procom" class="brand-image opacity-100" />
         <!--end::Brand Image-->
@@ -20,33 +20,39 @@
             aria-label="Main navigation" data-accordion="false" id="navigation">
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('home') }}" class="nav-link">
                     <i class="nav-icon bi bi-speedometer"></i>
-                    <p>Dashboard</p>
+                    <p>Home</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon bi bi-calendar"></i>
-                    <p>Periode</p>
+                    <p>About</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('contact') }}" class="nav-link">
                     <i class="nav-icon bi bi-bank"></i>
-                    <p>Fakultas</p>
+                    <p>Contact</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('division') }}" class="nav-link">
                     <i class="nav-icon bi bi-building"></i>
-                    <p>Program Studi</p>
+                    <p>Division</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('department') }}" class="nav-link">
+                    <i class="nav-icon bi bi-building"></i>
+                    <p>Department</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('gallery') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
-                    <p>Mahasiswa</p>
+                    <p>Gallery</p>
                 </a>
             </li>
         </ul>

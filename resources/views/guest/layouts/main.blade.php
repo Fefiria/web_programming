@@ -71,6 +71,7 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
+    <link rel="icon" type="image/png" href="{{ asset('assets/procom-white-bg.png') }}">
     <script data-cfasync="false" nonce="ef1ea391-9ebd-40cc-bba2-06437a0c4d95">
         try {
             (function(w, d) {
@@ -220,7 +221,7 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Title</h3>
+                                    <h3 class="card-title">@yield('card-title')</h3>
 
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"
@@ -235,10 +236,10 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    @yield('content')
+                                    @yield('card-content')
                                 </div>
                                 <!-- /.card-body -->
-                                <div class="card-footer">Footer</div>
+                                <div class="card-footer">@yield('card-footer')</div>
                                 <!-- /.card-footer-->
                             </div>
                             <!-- /.card -->
@@ -252,16 +253,7 @@
         <!--end::App Main-->
         <!--begin::Footer-->
         <footer class="app-footer">
-            <!--begin::To the end-->
-            <div class="float-end d-none d-sm-inline">Anything you want</div>
-            <!--end::To the end-->
-            <!--begin::Copyright-->
-            <strong>
-                Copyright &copy; 2014-2025&nbsp;
-                <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-            </strong>
-            All rights reserved.
-            <!--end::Copyright-->
+            @include('guest.layouts.footer')
         </footer>
         <!--end::Footer-->
     </div>

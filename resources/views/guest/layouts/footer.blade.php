@@ -1,8 +1,10 @@
-<footer class="main-footer text-sm">
-    <div class="container-fluid">
-        <div class="float-right d-none d-sm-inline">
-            Built for the programming community
-        </div>
-        <strong>© {{ date('Y') }} UKM Programming.</strong> All rights reserved.
-    </div>
-</footer>
+<!--begin::To the end-->
+<div class="float-end d-none d-sm-inline">Anything you want</div>
+<!--end::To the end-->
+<!--begin::Copyright-->
+<strong>
+    Copyright &copy; 2014-2025&nbsp;
+    <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+</strong>
+All rights reserved.
+<!--end::Copyright-->
