@@ -4,48 +4,101 @@
 
 @section('card-content')
     <div class="space-y-6">
-        <section class="bg-white rounded-2xl shadow-sm border p-8">
-            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                    <span
-                        class="inline-flex items-center rounded-full bg-blue-100 text-blue-700 px-3 py-1 text-sm font-semibold">UKM
-                        Programming</span>
-                    <h1 class="text-4xl font-bold text-slate-900 mt-4">Bangun kreativitas bersama komunitas teknologi.</h1>
-                    <p class="text-slate-600 mt-3 text-lg">
-                        Temukan ruang belajar, bertukar ide, dan mengembangkan kemampuan digital melalui kegiatan komunitas
-                        yang aktif dan inspiratif.
-                    </p>
-                    <div class="mt-6 flex flex-wrap gap-3">
-                        <a href="{{ url('/division') }}"
-                            class="bg-slate-900 text-white px-5 py-3 rounded-lg hover:bg-slate-700">Lihat Divisi</a>
-                        <a href="{{ url('/contact') }}"
-                            class="border border-slate-300 px-5 py-3 rounded-lg hover:bg-slate-50">Hubungi Kami</a>
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box text-bg-primary">
+                        <div class="inner">
+                            <h3>150</h3>
+                            <p>New Orders</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path
+                                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="bg-slate-50 rounded-2xl p-6 border">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white rounded-xl p-4 shadow-sm border">
-                            <div class="text-3xl font-bold text-slate-900">50+</div>
-                            <div class="text-sm text-slate-600">Anggota aktif</div>
-                        </div>
-                        <div class="bg-white rounded-xl p-4 shadow-sm border">
-                            <div class="text-3xl font-bold text-slate-900">12</div>
-                            <div class="text-sm text-slate-600">Kegiatan per bulan</div>
-                        </div>
-                        <div class="bg-white rounded-xl p-4 shadow-sm border col-span-2">
-                            <div class="text-sm font-semibold text-slate-700">Agenda utama</div>
-                            <div class="mt-2 text-slate-600">Workshop web development, UI/UX challenge, mentoring, dan
-                                project showcase.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-@endsection
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box text-bg-success">
+                        <div class="inner">
+                            <h3>53<sup class="fs-5">%</sup></h3>
 
-@section('card-footer')
-    <div class="text-center text-slate-500 text-sm">
-        &copy; 2024 UKM Programming. All rights reserved.
-    </div>
-@endsection
+                            <p>Bounce Rate</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path
+                                d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box text-bg-warning">
+                        <div class="inner">
+                            <h3>44</h3>
+
+                            <p>User Registrations</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path
+                                d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box text-bg-danger">
+                        <div class="inner">
+                            <h3>65</h3>
+
+                            <p>Unique Visitors</p>
+                        </div>
+                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z">
+                            </path>
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z">
+                            </path>
+                        </svg>
+                        <a href="#"
+                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                            More info <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    @endsection
+
+    @section('card-footer')
+        <div class="text-center text-slate-500 text-sm">
+            &copy; 2024 UKM Programming. All rights reserved.
+        </div>
+    @endsection

@@ -95,8 +95,8 @@
                 <!-- CV Upload -->
                 <div class="mb-3">
                     <label for="cv" class="form-label fw-semibold text-dark small">Upload CV</label>
-                    <input id="cv" type="file" name="cv" accept="application/pdf" required
-                        class="form-control filepond rounded-3 fs-6" />
+                    <input id="cv" type="file" name="cv" accept=".pdf" required
+                        class="form-control rounded-3 fs-6">
                     <div class="form-text text-muted small mt-1">Format yang diterima: PDF. Maksimal ukuran file: 2 MB.
                     </div>
                     @error('cv')

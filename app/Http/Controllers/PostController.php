@@ -12,7 +12,6 @@ class PostController extends Controller
     public function index(): View
     {
         $posts = Post::with(['user', 'role', 'division'])->get();
-
         return view('posts.index', compact('posts'));
     }
 
