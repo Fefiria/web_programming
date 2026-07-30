@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CloudinaryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ListPresensiController;
@@ -13,9 +14,12 @@ use App\Http\Controllers\StatusPresensiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'guest.home')->name('home');
+Route::view('/about', 'guest.about')->name('about');
+Route::view('/contact', 'guest.contact')->name('contact');
+Route::get('/division', [DivisionController::class, 'guestIndex'])->name('division');
+Route::view('/department', 'guest.department')->name('department');
+Route::view('/gallery', 'guest.gallery')->name('gallery');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,7 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('status-presensis', StatusPresensiController::class);
 });
 
-use App\Http\Controllers\CloudinaryController;
 
 Route::post('/cloudinary-test', [CloudinaryController::class, 'testUpload']);
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -33,23 +34,43 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'npm' => ['required', 'string', 'max:255', 'unique:' . User::class . ',npm'],
+            'birth_date' => ['required', 'date'],
+            'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'bio' => ['required', 'file', 'mimes:pdf', 'max:2048'],
+            'cv' => ['required', 'file', 'mimes:pdf', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $username = Str::slug($request->name) . '.' . Str::before($request->email, '@');
+
+        $bioPath = null;
+        if ($request->hasFile('bio')) {
+            $bioPath = $request->file('bio')->store('bios', 'public');
+        }
+
+        $cvPath = null;
+        if ($request->hasFile('cv')) {
+            $cvPath = $request->file('cv')->store('cvs', 'public');
+        }
 
         $user = User::create([
             'name' => $request->name,
             'username' => $username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number,
+            'npm' => $request->npm,
+            'birth_date' => $request->birth_date,
+            'bio_path' => $bioPath,
+            'cv_path' => $cvPath,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('membership.pending')->with('status', 'Pendaftaran berhasil dibuat. Silakan tunggu persetujuan admin sebelum Anda resmi menjadi anggota UKM.');
     }
 }

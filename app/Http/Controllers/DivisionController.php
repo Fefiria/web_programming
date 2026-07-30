@@ -9,10 +9,16 @@ use Illuminate\View\View;
 
 class DivisionController extends Controller
 {
+    public function guestIndex(): View
+    {
+        $divisions = Division::latest()->get();
+
+        return view('guest.division', compact('divisions'));
+    }
+
     public function index(): View
     {
         $divisions = Division::all();
-
         return view('divisions.index', compact('divisions'));
     }
 
