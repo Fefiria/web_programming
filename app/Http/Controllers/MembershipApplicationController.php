@@ -24,12 +24,13 @@ class MembershipApplicationController extends Controller
             'birth_date' => ['required', 'date'],
             'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'email', 'max:255', 'unique:membership_applications,email'],
-            'bio' => ['required', 'string', 'max:1000'],
+            'bio' => ['required',  'file', 'mimes:pdf', 'max:2048'],
             'cv' => ['required', 'file', 'mimes:pdf', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $upload = $cloudinary->upload($request->file('cv'));
+        $bioUpload = $cloudinary->upload($request->file('bio'));
+        $cvUpload = $cloudinary->upload($request->file('cv'));
 
         MembershipApplication::create([
             'name' => $validated['name'],
@@ -37,9 +38,10 @@ class MembershipApplicationController extends Controller
             'phone_number' => $validated['phone_number'],
             'npm' => $validated['npm'],
             'birth_date' => $validated['birth_date'],
-            'bio' => $validated['bio'],
-            'cv_url' => $upload['secure_url'],
-            'cv_public_id' => $upload['public_id'],
+            'bio_url' => $bioUpload['secure_url'],
+            'bio_public_id' => $bioUpload['public_id'],
+            'cv_url' => $cvUpload['secure_url'],
+            'cv_public_id' => $cvUpload['public_id'],
             'password' => Hash::make($validated['password']),
             'status' => 'pending',
         ]);

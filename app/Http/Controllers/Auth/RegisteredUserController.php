@@ -38,12 +38,17 @@ class RegisteredUserController extends Controller
             'birth_date' => ['required', 'date'],
             'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'bio' => ['required', 'string'],
+            'bio' => ['required', 'file', 'mimes:pdf', 'max:2048'],
             'cv' => ['required', 'file', 'mimes:pdf', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $username = Str::slug($request->name) . '.' . Str::before($request->email, '@');
+
+        $bioPath = null;
+        if ($request->hasFile('bio')) {
+            $bioPath = $request->file('bio')->store('bios', 'public');
+        }
 
         $cvPath = null;
         if ($request->hasFile('cv')) {
@@ -58,7 +63,7 @@ class RegisteredUserController extends Controller
             'phone_number' => $request->phone_number,
             'npm' => $request->npm,
             'birth_date' => $request->birth_date,
-            'bio' => $request->bio,
+            'bio_path' => $bioPath,
             'cv_path' => $cvPath,
         ]);
 

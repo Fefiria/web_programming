@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('npm')->unique();
             $table->date('birth_date');
-            $table->text('bio');
+            $table->string('bio_url');
+            $table->string('bio_public_id');
             $table->string('cv_url');
             $table->string('cv_public_id');
             $table->string('password');

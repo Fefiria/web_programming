@@ -85,8 +85,10 @@
 
                 <!-- Bio -->
                 <div class="mb-3">
-                    <label for="bio" class="form-label fw-semibold text-dark small">Biodata</label>
-                    <textarea id="bio" name="bio" rows="4" required class="form-control bg-white rounded-3 fs-6">{{ old('bio') }}</textarea>
+                    <label for="bio" class="form-label fw-semibold text-dark small">Upload Biodata</label>
+                    <input id="bio" type="file" name="bio" accept=".pdf" required
+                        class="form-control rounded-3 fs-6">
+                    <div class="form-text">Biodata harus berupa file PDF. Maksimal 2 MB.</div>
                     @error('bio')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
