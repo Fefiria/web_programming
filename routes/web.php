@@ -4,6 +4,7 @@ use App\Http\Controllers\CloudinaryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ListPresensiController;
+use App\Http\Controllers\MembershipApplicationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ProfileController;
@@ -42,6 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('status-presensis', StatusPresensiController::class);
 });
 
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/membership-applications', [MembershipApplicationController::class, 'index'])
+        ->name('membership-applications.index');
+    Route::patch('/membership-applications/{membershipApplication}/approve', [MembershipApplicationController::class, 'approve'])
+        ->name('membership-applications.approve');
+    Route::patch('/membership-applications/{membershipApplication}/reject', [MembershipApplicationController::class, 'reject'])
+        ->name('membership-applications.reject');
+});
 
 Route::post('/cloudinary-test', [CloudinaryController::class, 'testUpload']);
 
