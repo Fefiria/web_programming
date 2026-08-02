@@ -51,4 +51,70 @@ class MembershipApplicationController extends Controller
             'Pendaftaran berhasil dikirim. Silakan tunggu persetujuan admin.'
         );
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * [ADMIN] Tampilkan daftar pendaftar (default: yang masih pending).
+     */
+    public function index(Request $request)
+    {
+        $status = $request->query('status', 'pending');
+
+        $applications = MembershipApplication::when($status !== 'all', function ($query) use ($status) {
+            $query->where('status', $status);
+        })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.membership.index', compact('applications', 'status'));
+    }
+
+    /**
+     * [ADMIN] Setujui pendaftar -> buat akun User resmi.
+     * Password yang sudah di-hash saat registrasi dipakai ulang,
+     * jadi pendaftar bisa login dengan email + password yang sama saat daftar.
+     */
+    public function approve(MembershipApplication $membershipApplication): RedirectResponse
+    {
+        if ($membershipApplication->status !== 'pending') {
+            return back()->with('error', 'Pendaftaran ini sudah diproses sebelumnya.');
+        }
+
+        DB::transaction(function () use ($membershipApplication) {
+            User::create([
+                'name' => $membershipApplication->name,
+                'username' => $membershipApplication->npm,
+                'email' => $membershipApplication->email,
+                'password' => $membershipApplication->password, // sudah hashed, langsung dipakai
+                'phone_number' => $membershipApplication->phone_number,
+                'npm' => $membershipApplication->npm,
+                'birth_date' => $membershipApplication->birth_date,
+                'bio' => $membershipApplication->bio_url,
+                'cv_path' => $membershipApplication->cv_url,
+                'role' => 'user',
+                'email_verified_at' => now(),
+            ]);
+
+            $membershipApplication->update(['status' => 'approved']);
+        });
+
+        return back()->with('success', 'Pendaftar disetujui dan akun user berhasil dibuat.');
+    }
+
+    /**
+     * [ADMIN] Tolak pendaftar.
+     */
+    public function reject(MembershipApplication $membershipApplication): RedirectResponse
+    {
+        if ($membershipApplication->status !== 'pending') {
+            return back()->with('error', 'Pendaftaran ini sudah diproses sebelumnya.');
+        }
+
+        $membershipApplication->update(['status' => 'rejected']);
+
+        return back()->with('success', 'Pendaftar ditolak.');
+    }
+>>>>>>> Stashed changes
 }
