@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('gallery_images', function (Blueprint $table) {
+            $table->uuid('id_gallery_image')->primary();
+            $table->foreignUuid('id_gallery')->constrained('galleries', 'id_gallery')->cascadeOnDelete();
+            $table->string('image_url');
+            $table->string('image_public_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('gallery_images');
+    }
+};
