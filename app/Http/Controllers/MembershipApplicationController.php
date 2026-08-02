@@ -53,6 +53,7 @@ class MembershipApplicationController extends Controller
             'Pendaftaran berhasil dikirim. Silakan tunggu persetujuan admin.'
         );
     }
+
  
     /**
      * [ADMIN] Tampilkan daftar pendaftar (default: yang masih pending).
@@ -111,10 +112,10 @@ class MembershipApplicationController extends Controller
         if ($membershipApplication->status !== 'pending') {
             return back()->with('error', 'Pendaftaran ini sudah diproses sebelumnya.');
         }
- 
         $membershipApplication->update(['status' => 'rejected']);
  
         return back()->with('success', 'Pendaftar ditolak.');
     }
+
 }
  
