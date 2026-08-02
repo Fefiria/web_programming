@@ -1,21 +1,23 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-
+ 
 use App\Models\MembershipApplication;
+use App\Models\User;
 use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+ 
 class MembershipApplicationController extends Controller
 {
     public function create()
     {
         return view('auth.register');
     }
-
+ 
     public function store(Request $request, CloudinaryService $cloudinary): RedirectResponse
     {
         $validated = $request->validate([
@@ -28,10 +30,10 @@ class MembershipApplicationController extends Controller
             'cv' => ['required', 'file', 'mimes:pdf', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+ 
         $bioUpload = $cloudinary->upload($request->file('bio'));
         $cvUpload = $cloudinary->upload($request->file('cv'));
-
+ 
         MembershipApplication::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
@@ -45,32 +47,31 @@ class MembershipApplicationController extends Controller
             'password' => Hash::make($validated['password']),
             'status' => 'pending',
         ]);
-
+ 
         return redirect()->route('membership.pending')->with(
             'success',
             'Pendaftaran berhasil dikirim. Silakan tunggu persetujuan admin.'
         );
     }
-<<<<<<< Updated upstream
-=======
 
+ 
     /**
      * [ADMIN] Tampilkan daftar pendaftar (default: yang masih pending).
      */
     public function index(Request $request)
     {
         $status = $request->query('status', 'pending');
-
+ 
         $applications = MembershipApplication::when($status !== 'all', function ($query) use ($status) {
-            $query->where('status', $status);
-        })
+                $query->where('status', $status);
+            })
             ->latest()
             ->paginate(10)
             ->withQueryString();
-
+ 
         return view('admin.membership.index', compact('applications', 'status'));
     }
-
+ 
     /**
      * [ADMIN] Setujui pendaftar -> buat akun User resmi.
      * Password yang sudah di-hash saat registrasi dipakai ulang,
@@ -81,7 +82,7 @@ class MembershipApplicationController extends Controller
         if ($membershipApplication->status !== 'pending') {
             return back()->with('error', 'Pendaftaran ini sudah diproses sebelumnya.');
         }
-
+ 
         DB::transaction(function () use ($membershipApplication) {
             User::create([
                 'name' => $membershipApplication->name,
@@ -96,13 +97,13 @@ class MembershipApplicationController extends Controller
                 'role' => 'user',
                 'email_verified_at' => now(),
             ]);
-
+ 
             $membershipApplication->update(['status' => 'approved']);
         });
-
+ 
         return back()->with('success', 'Pendaftar disetujui dan akun user berhasil dibuat.');
     }
-
+ 
     /**
      * [ADMIN] Tolak pendaftar.
      */
@@ -111,10 +112,10 @@ class MembershipApplicationController extends Controller
         if ($membershipApplication->status !== 'pending') {
             return back()->with('error', 'Pendaftaran ini sudah diproses sebelumnya.');
         }
-
         $membershipApplication->update(['status' => 'rejected']);
-
+ 
         return back()->with('success', 'Pendaftar ditolak.');
     }
->>>>>>> Stashed changes
+
 }
+ 
