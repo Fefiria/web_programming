@@ -26,6 +26,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <i class="nav-icon bi bi-speedometer"></i>
+                    <p>Users</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon bi bi-calendar"></i>
                     <p>About</p>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CloudinaryController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ListPresensiController;
 use App\Http\Controllers\MembershipApplicationController;
@@ -20,7 +21,7 @@ Route::view('/about', 'guest.about')->name('about');
 Route::view('/contact', 'guest.contact')->name('contact');
 Route::get('/division', [DivisionController::class, 'guestIndex'])->name('division');
 Route::view('/department', 'guest.department')->name('department');
-Route::view('/gallery', 'guest.gallery')->name('gallery');
+Route::resource('galleries', GalleryController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
     Route::resource('informations', InformationController::class);
     Route::resource('projects', ProjectController::class);
+    Route::resource('galleries', GalleryController::class);
     Route::resource('project-images', ProjectImageController::class);
     Route::resource('presensis', PresensiController::class);
     Route::resource('list-presensis', ListPresensiController::class);
