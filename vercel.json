@@ -3,15 +3,15 @@
     "framework": null,
     "builds": [
         {
-            "src": "/api/index.php",
+            "src": "api/index.php",
             "use": "vercel-php@0.7.4"
         },
         {
-            "src": "/public/build/assets/**",
+            "src": "public/build/assets/**",
             "use": "@vercel/static"
         },
         {
-            "src": "/public/**",
+            "src": "public/**",
             "use": "@vercel/static"
         }
     ],
@@ -38,22 +38,5 @@
         }
     ],
     "outputDirectory": "public",
-    "env": {
-        "APP_NAME": "UKM Programming",
-        "APP_ENV": "production",
-        "APP_DEBUG": "false",
-
-        "LOG_CHANNEL": "stderr",
-        "CACHE_STORE": "array",
-        "SESSION_DRIVER": "cookie",
-        "QUEUE_CONNECTION": "sync",
-        "FILESYSTEM_DISK": "local",
-
-        "APP_CONFIG_CACHE": "/tmp/config.php",
-        "APP_EVENTS_CACHE": "/tmp/events.php",
-        "APP_PACKAGES_CACHE": "/tmp/packages.php",
-        "APP_ROUTES_CACHE": "/tmp/routes.php",
-        "APP_SERVICES_CACHE": "/tmp/services.php",
-        "VIEW_COMPILED_PATH": "/tmp"
-    }
+    "env": {}
 }
