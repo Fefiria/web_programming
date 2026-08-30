@@ -1,4 +1,17 @@
 <?php
 
-// Forward Vercel requests ke entry point normal Laravel
-require __DIR__ . '/../public/index.php';
+error_log('VERCEL PHP START');
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+error_log('LARAVEL APP CREATED');
+
+$request = Illuminate\Http\Request::capture();
+
+$response = $app->handle($request);
+
+$response->send();
+
+$app->terminate($request, $response);
