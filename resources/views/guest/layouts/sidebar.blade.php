@@ -1,4 +1,3 @@
-```blade
 <!--begin::Sidebar Brand-->
 <div class="sidebar-brand">
     <a href="{{ route('home') }}" class="brand-link">
