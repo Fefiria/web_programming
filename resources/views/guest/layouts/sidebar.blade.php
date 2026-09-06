@@ -42,13 +42,6 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('department') }}" class="nav-link">
-                    <i class="nav-icon bi bi-building"></i>
-                    <p>Department</p>
-                </a>
-            </li>
-
-            <li class="nav-item">
                 <a href="{{ route('galleries.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
                     <p>Gallery</p>
