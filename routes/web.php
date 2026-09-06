@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
     Route::resource('informations', InformationController::class);
     Route::resource('projects', ProjectController::class);
-    Route::resource('galleries', GalleryController::class);
+    // Route::resource('galleries', GalleryController::class);
     Route::resource('project-images', ProjectImageController::class);
     Route::resource('presensis', PresensiController::class);
     Route::resource('list-presensis', ListPresensiController::class);
@@ -47,13 +47,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('galleries', GalleryController::class);
     Route::get('/membership-applications', [MembershipApplicationController::class, 'index'])
         ->name('membership-applications.index');
     Route::patch('/membership-applications/{membershipApplication}/approve', [MembershipApplicationController::class, 'approve'])
         ->name('membership-applications.approve');
     Route::patch('/membership-applications/{membershipApplication}/reject', [MembershipApplicationController::class, 'reject'])
         ->name('membership-applications.reject');
-    Route::resource('galleries', GalleryController::class);
 });
 
 Route::post('/cloudinary-test', [CloudinaryController::class, 'testUpload']);
