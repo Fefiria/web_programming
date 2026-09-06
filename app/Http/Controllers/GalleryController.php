@@ -52,6 +52,7 @@ class GalleryController extends Controller
 
         foreach ($request->file('images') as $image) {
             $upload = $cloudinary->upload($image);
+
             GalleryImage::create([
                 'id_gallery' => $gallery->id_gallery,
                 'image_url' => $upload['secure_url'],
@@ -59,7 +60,9 @@ class GalleryController extends Controller
             ]);
         }
 
-        return redirect()->route('galleries.index')->with('success', 'Galeri berhasil ditambahkan.');
+        return redirect()
+            ->route('admin.galleries.index')
+            ->with('success', 'Galeri berhasil ditambahkan.');
     }
 
     public function show(Gallery $gallery)
@@ -84,7 +87,10 @@ class GalleryController extends Controller
         ]);
 
         $gallery->update($validated);
-        return redirect()->route('galleries.index')->with('success', 'Galeri berhasil diperbarui.');
+
+        return redirect()
+            ->route('admin.galleries.index')
+            ->with('success', 'Galeri berhasil diperbarui.');
     }
 
     public function destroy(Gallery $gallery, CloudinaryService $cloudinary)
@@ -92,7 +98,11 @@ class GalleryController extends Controller
         foreach ($gallery->images as $image) {
             $cloudinary->destroy($image->image_public_id);
         }
+
         $gallery->delete();
-        return redirect()->route('galleries.index')->with('success', 'Galeri berhasil dihapus.');
+
+        return redirect()
+            ->route('admin.galleries.index')
+            ->with('success', 'Galeri berhasil dihapus.');
     }
 }

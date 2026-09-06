@@ -22,12 +22,11 @@ Route::view('/contact', 'guest.contact')->name('contact');
 Route::get('/division', [DivisionController::class, 'guestIndex'])->name('division');
 Route::get('/galleries', [GalleryController::class, 'guestIndex'])
     ->name('galleries');
-Route::get('/galleries/{gallery}', [GalleryController::class, 'guestShow'])
-    ->name('galleries.show');
+Route::get('/galleries', [GalleryController::class, 'guestIndex'])
+    ->name('gallery');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/galleries/{gallery}', [GalleryController::class, 'guestShow'])
+    ->name('gallery.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,7 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('status-presensis', StatusPresensiController::class);
 });
 
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/membership-applications', [MembershipApplicationController::class, 'index'])
         ->name('membership-applications.index');
@@ -55,6 +53,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         ->name('membership-applications.approve');
     Route::patch('/membership-applications/{membershipApplication}/reject', [MembershipApplicationController::class, 'reject'])
         ->name('membership-applications.reject');
+    Route::resource('galleries', GalleryController::class);
 });
 
 Route::post('/cloudinary-test', [CloudinaryController::class, 'testUpload']);
