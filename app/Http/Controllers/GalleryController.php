@@ -6,6 +6,7 @@ use App\Models\Gallery;
 use App\Models\GalleryImage;
 use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
@@ -43,26 +44,38 @@ class GalleryController extends Controller
             'images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ]);
 
-        $gallery = Gallery::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'] ?? null,
-            'event_date' => $validated['event_date'] ?? null,
-            'status' => $validated['status'],
-        ]);
+        try {
+            DB::beginTransaction();
 
-        foreach ($request->file('images') as $image) {
-            $upload = $cloudinary->upload($image);
-
-            GalleryImage::create([
-                'id_gallery' => $gallery->id_gallery,
-                'image_url' => $upload['secure_url'],
-                'image_public_id' => $upload['public_id'],
+            $gallery = Gallery::create([
+                'title' => $validated['title'],
+                'description' => $validated['description'] ?? null,
+                'event_date' => $validated['event_date'] ?? null,
+                'status' => $validated['status'],
             ]);
-        }
 
-        return redirect()
-            ->route('admin.galleries.index')
-            ->with('success', 'Galeri berhasil ditambahkan.');
+            foreach ($request->file('images') as $image) {
+                $upload = $cloudinary->upload($image);
+
+                GalleryImage::create([
+                    'id_gallery' => $gallery->id_gallery,
+                    'image_url' => $upload['secure_url'],
+                    'image_public_id' => $upload['public_id'],
+                ]);
+            }
+
+            DB::commit();
+
+            return redirect()
+                ->route('admin.galleries.index')
+                ->with('success', 'Galeri berhasil ditambahkan.');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            return back()
+                ->withInput()
+                ->withErrors(['images' => 'Gagal mengunggah galeri: ' . $e->getMessage()]);
+        }
     }
 
     public function show(Gallery $gallery)

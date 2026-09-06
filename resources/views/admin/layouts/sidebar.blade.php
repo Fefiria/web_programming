@@ -44,18 +44,31 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('division') }}" class="nav-link">
+                <a href="{{ route('divisions.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-building"></i>
                     <p>Division</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('galleries.index') }}" class="nav-link">
+                <a href="{{ route('admin.galleries.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
                     <p>Gallery</p>
                 </a>
             </li>
-        </ul>
+            <li class="nav-item">
+                <a href="{{ route('admin.membership-applications.index') }}" class="nav-link">
+                    <i class="nav-icon bi bi-person-check"></i>
+                <p>Pendaftar Baru</p>
+            </a>
+        </li>
+
+            <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <i class="nav-icon bi bi-people-fill"></i>
+                <p>Kelola User</p>
+            </a>
+        </li>
+    </ul>
         <!--end::Sidebar Menu-->
     </nav>
 </div>

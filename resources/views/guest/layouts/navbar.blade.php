@@ -10,7 +10,7 @@
         <li class="nav-item d-none d-md-block">
             <a href="#" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-md-block">
+        <li class="nav-item d-none d-md-block">php 
             <a href="#" class="nav-link">Contact</a>
         </li>
     </ul>
@@ -143,20 +143,31 @@
         </li>
         <!--end::Fullscreen Toggle-->
 
-        <!--begin::Guest Register for Membership Button Menu Dropdown-->
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                <i class="bi bi-person-circle"></i>
+<!--begin::Auth-aware Account Menu-->
+<li class="nav-item">
+    <a class="nav-link" data-bs-toggle="dropdown" href="#">
+        <i class="bi bi-person-circle"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        @auth
+            <span class="dropdown-item-text fw-bold">{{ auth()->user()->name }}</span>
+            <div class="dropdown-divider"></div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="dropdown-item">
+                    <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="dropdown-item">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Login
             </a>
-            <div class="dropdown-menu dropdown-menu-end">
-                <a href="{{ route('login') }}" class="dropdown-item">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
-                </a>
-                <a href="{{ route('register') }}" class="dropdown-item">
-                    <i class="bi bi-person-plus me-2"></i> Register to Become a Member
-                </a>
-            </div>
-        </li>
+            <a href="{{ route('register') }}" class="dropdown-item">
+                <i class="bi bi-person-plus me-2"></i> Register to Become a Member
+            </a>
+        @endauth
+    </div>
+</li>
     </ul>
 
     </li>
