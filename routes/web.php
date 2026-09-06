@@ -20,8 +20,10 @@ Route::view('/', 'guest.home')->name('home');
 Route::view('/about', 'guest.about')->name('about');
 Route::view('/contact', 'guest.contact')->name('contact');
 Route::get('/division', [DivisionController::class, 'guestIndex'])->name('division');
-Route::get('/galleries', [GalleryController::class, 'guestIndex'])->name('galleries');
-Route::get('/galleries/{gallery}', [GalleryController::class, 'guestShow'])->name('galleries.show');
+Route::get('/galleries', [GalleryController::class, 'guestIndex'])
+    ->name('galleries');
+Route::get('/galleries/{gallery}', [GalleryController::class, 'guestShow'])
+    ->name('galleries.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

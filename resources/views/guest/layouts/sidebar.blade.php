@@ -42,7 +42,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('gallery.guest') }}" class="nav-link">
+                <a href="{{ route('galleries') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
                     <p>Gallery</p>
                 </a>
