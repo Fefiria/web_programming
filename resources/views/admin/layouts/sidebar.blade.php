@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('gallery') }}" class="nav-link">
+                <a href="{{ route('galleries.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
                     <p>Gallery</p>
                 </a>
