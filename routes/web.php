@@ -3,6 +3,7 @@
 use App\Http\Controllers\CloudinaryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ListPresensiController;
 use App\Http\Controllers\MembershipApplicationController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatusPresensiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::view('/', 'guest.home')->name('home');
 Route::view('/about', 'guest.about')->name('about');
@@ -47,6 +49,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
     Route::resource('galleries', GalleryController::class);
     Route::get('/membership-applications', [MembershipApplicationController::class, 'index'])
         ->name('membership-applications.index');

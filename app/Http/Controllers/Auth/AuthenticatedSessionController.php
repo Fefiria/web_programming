@@ -29,12 +29,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (auth()->user()->role === 'admin') {
-            return redirect()->intended(route('admin.home', absolute: false));
+            return redirect()->route('admin.home');
         }
 
-        return redirect()->intended(route('home', absolute: false));
+        return redirect()->route('home');
     }
-
     /**
      * Destroy an authenticated session.
      */
