@@ -63,6 +63,11 @@
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
     <link rel="icon" type="image/png" href="{{ asset('assets/procom-white-bg.png') }}">
+
+    <!--begin::Custom Admin Style-->
+    <link rel="stylesheet" href="{{ asset('assets/admin-custom.css') }}">
+    <!--end::Custom Admin Style-->
+
     <script data-cfasync="false" nonce="ef1ea391-9ebd-40cc-bba2-06437a0c4d95">
         try {
             (function(w, d) {

@@ -13,12 +13,12 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('users.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function create(): View
     {
-        return view('users.create');
+        return view('admin.user.create');
     }
 
     public function store(Request $request): RedirectResponse
@@ -40,12 +40,12 @@ class UserController extends Controller
 
     public function show(User $user): View
     {
-        return view('users.show', compact('user'));
+        return view('admin.user.update', compact('user'));
     }
 
     public function edit(User $user): View
     {
-        return view('users.edit', compact('user'));
+        return view('admin.user.update', compact('user'));
     }
 
     public function update(Request $request, User $user): RedirectResponse

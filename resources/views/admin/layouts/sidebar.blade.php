@@ -1,7 +1,7 @@
 <!--begin::Sidebar Brand-->
 <div class="sidebar-brand">
     <!--begin::Brand Link-->
-    <a href="{{ route('home') }}" class="brand-link">
+    <a href="{{ route('admin.membership-applications.index') }}" class="brand-link">
         <!--begin::Brand Image-->
         <img src="{{ url('assets/procom.png') }}" alt="Logo-Procom" class="brand-image opacity-100" />
         <!--end::Brand Image-->
@@ -20,36 +20,6 @@
             aria-label="Main navigation" data-accordion="false" id="navigation">
 
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
-                    <i class="nav-icon bi bi-speedometer"></i>
-                    <p>Home</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link">
-                    <i class="nav-icon bi bi-speedometer"></i>
-                    <p>Users</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('about') }}" class="nav-link">
-                    <i class="nav-icon bi bi-calendar"></i>
-                    <p>About</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('contact') }}" class="nav-link">
-                    <i class="nav-icon bi bi-bank"></i>
-                    <p>Contact</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('divisions.index') }}" class="nav-link">
-                    <i class="nav-icon bi bi-building"></i>
-                    <p>Division</p>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="{{ route('admin.galleries.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-people"></i>
                     <p>Gallery</p>
@@ -58,18 +28,13 @@
             <li class="nav-item">
                 <a href="{{ route('admin.membership-applications.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-person-check"></i>
-                <p>Pendaftar Baru</p>
-            </a>
-        </li>
-
+                    <p>Pendaftar Baru</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <i class="nav-icon bi bi-people-fill"></i>
-                <p>Kelola User</p>
-            </a>
-        </li>
-    </ul>
-        <!--end::Sidebar Menu-->
-    </nav>
-</div>
-<!--end::Sidebar Wrapper-->
+                    <p>Kelola User</p>
+                </a>
+            </li>
+            

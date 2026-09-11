@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * masuk halaman admin
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.membership-applications.index');
         }
 
         return redirect()->route('home');

@@ -16,6 +16,12 @@
     </ul>
     <!--end::Start Navbar Links-->
 
+    <!--begin::Center Title-->
+    <div class="navbar-center-title d-none d-md-block">
+        <span>Bagian Administrator</span>
+    </div>
+    <!--end::Center Title-->
+
     <!--begin::End Navbar Links-->
     <ul class="navbar-nav ms-auto">
         <!--begin::Navbar Search-->
